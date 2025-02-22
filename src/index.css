@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+*{
+  box-sizing: border-box;
+}
+.product {
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+.product:hover {
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.5); /* Green shadow */
+}
+
+.add-to-cart-button {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.product:hover .add-to-cart-button {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateX(-50%) translateY(100%);
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+button {
+  height: auto;
+  background-color: #4fa74f;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3d8b3d;
+}
+
