@@ -52,7 +52,6 @@ const Login = () => {
     <div className="py-7 mt-32">
       <div className="container mx-auto">
         <h1 className="text-green-700 text-6xl font-bold text-center mb-12">
-          {" "}
           Login
         </h1>
 
