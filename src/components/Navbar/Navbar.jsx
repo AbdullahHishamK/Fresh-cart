@@ -24,7 +24,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className={`w-full md:flex md:items-center md:w-auto ${isOpen ? 'block' : 'hidden'}`}>
-          <ul className='flex flex-col md:flex-row md:items-center'>
+          <ul className='flex flex-col md:flex-row md:items-center md:justify-center w-full'>
             {isAuthenticated && (
               <>
                 <li className='mx-2 my-2 md:my-0'>
@@ -48,14 +48,16 @@ const Navbar = () => {
               </>
             )}
           </ul>
-          <div className='flex flex-col md:flex-row md:items-center'>
-            <i className="fa-brands fa-instagram ml-2"></i>
-            <i className="fa-brands fa-facebook ml-2"></i>
-            <i className="fa-brands fa-tiktok ml-2"></i>
-            <i className="fa-brands fa-twitter ml-2"></i>
-            <i className="fa-brands fa-linkedin ml-2"></i>
-            <i className="fa-brands fa-youtube ml-2"></i>
-            <ul className='flex flex-col md:flex-row md:items-center'>
+          <div className='flex flex-col md:flex-row md:items-center md:justify-center w-full'>
+            <div className='flex space-x-2 justify-center'>
+              <i className="fa-brands fa-instagram"></i>
+              <i className="fa-brands fa-facebook"></i>
+              <i className="fa-brands fa-tiktok"></i>
+              <i className="fa-brands fa-twitter"></i>
+              <i className="fa-brands fa-linkedin"></i>
+              <i className="fa-brands fa-youtube"></i>
+            </div>
+            <ul className='flex flex-col md:flex-row md:items-center md:justify-center w-full'>
               {isAuthenticated ? (
                 <li className='mx-2 my-2 md:my-0'>
                   <button onClick={logout} className='p-2'>Logout</button>
