@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../CartContext.jsx/CartContext";
 import { WishListContext } from "../WishListContext/WishListContext";
 import { ClipLoader } from "react-spinners";
+import toast, { Toaster } from "react-hot-toast";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const { addToCart } = useContext(CartContext);
-  const { addToWishList } = useContext(WishListContext);
+  const { addToWishList, wishList } = useContext(WishListContext);
 
   async function getAllFood() {
     try {
@@ -39,6 +40,20 @@ const Products = () => {
       product.title &&
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const isProductInWishList = (productId) => {
+    return wishList?.some((item) => item._id === productId);
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    toast.success("Added successfully to cart");
+  };
+
+  const handleAddToWishList = (product) => {
+    addToWishList(product);
+    toast.success("Added successfully to wishlist");
+  };
 
   return (
     <>
@@ -75,13 +90,13 @@ const Products = () => {
                 <div className="add-to-cart d-flex justify-content-between align-items-center mt-2">
                   <button
                     className="add-to-cart-button"
-                    onClick={() => addToCart(product)}
+                    onClick={() => handleAddToCart(product)}
                   >
                     + Add
                   </button>
                   <i
-                    className="fa-2x fa-solid fa-heart h3 cursor-pointer"
-                    onClick={() => addToWishList(product)}
+                    className={`fa-2x fa-solid fa-heart h3 cursor-pointer ${isProductInWishList(product._id) ? 'text-red-500' : ''}`}
+                    onClick={() => handleAddToWishList(product)}
                   ></i>
                 </div>
               </div>
@@ -93,6 +108,7 @@ const Products = () => {
           </div>
         )}
       </div>
+      <Toaster />
     </>
   );
 };
