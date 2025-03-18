@@ -1,10 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/images/freshcart-logo.svg';
 import { useAuth } from '../auth/AuthContext';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { CartContext } from '../CartContext.jsx/CartContext';
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
+  const { cart } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -30,8 +32,15 @@ const Navbar = () => {
                 <li className='mx-2 my-2 md:my-0'>
                   <NavLink to='/home' className='p-2'>Home</NavLink>
                 </li>
-                <li className='mx-2 my-2 md:my-0'>
-                  <NavLink to='/cart' className='p-2'>Cart</NavLink>
+                <li className='mx-2 my-2 md:my-0 relative'>
+                  <NavLink to='/cart' className='p-2'>
+                    Cart
+                    {cart.length > 0 && (
+                      <span className="absolute top-[-10px] right-[-10px] inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                        {cart.length}
+                      </span>
+                    )}
+                  </NavLink>
                 </li>
                 <li className='mx-2 my-2 md:my-0'>
                   <NavLink to='/products' className='p-2'>Products</NavLink>
