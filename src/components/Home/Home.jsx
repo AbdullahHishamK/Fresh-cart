@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../CartContext.jsx/CartContext";
 import { WishListContext } from "../WishListContext/WishListContext";
 import { ClipLoader } from "react-spinners";
+import toast, { Toaster } from "react-hot-toast";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -41,6 +42,16 @@ const Home = () => {
       product.title &&
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    toast.success("Added successfully to cart");
+  };
+
+  const handleAddToWishList = (product) => {
+    addToWishList(product);
+    toast.success("Added successfully to wishlist");
+  };
 
   return (
     <>
@@ -79,13 +90,13 @@ const Home = () => {
                 <div className="add-to-cart d-flex justify-content-between align-items-center mt-2">
                   <button
                     className="add-to-cart-button"
-                    onClick={() => addToCart(product)}
+                    onClick={() => handleAddToCart(product)}
                   >
                     + Add
                   </button>
                   <i
                     className="fa-2x fa-solid fa-heart h3 cursor-pointer"
-                    onClick={() => addToWishList(product)}
+                    onClick={() => handleAddToWishList(product)}
                   ></i>
                 </div>
               </div>
@@ -97,6 +108,7 @@ const Home = () => {
           </div>
         )}
       </div>
+      <Toaster />
     </>
   );
 };
