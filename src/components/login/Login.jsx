@@ -19,11 +19,11 @@ const Login = () => {
   async function handleLogin(values) {
     setisloading(true);
     try {
-      const { data } = await axios.post(
+      await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/signin",
         values
       );
-      toast.success(data.message);
+      toast.success('Successfully toasted!');
       setisloading(false);
       login();
       navigate("/home"); 
@@ -55,7 +55,7 @@ const Login = () => {
           Login
         </h1>
 
-        <div className="w-[60%] mx-auto">
+        <div className="w-full md:w-[60%] mx-auto px-4">
           <form onSubmit={formik.handleSubmit}>
             <div className="mb-5">
               <label
@@ -99,10 +99,10 @@ const Login = () => {
                 <div className="text-red-500 text-sm">{formik.errors.password}</div>
               ) : null}
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col md:flex-row justify-between items-center">
               <button
                 type="submit"
-                className="py-2.5 px-5 font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+                className="py-2.5 px-5 mb-2 md:mb-0 font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
               >
                 Login
               </button>
