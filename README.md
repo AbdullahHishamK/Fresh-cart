@@ -1,8 +1,60 @@
-# React + Vite
+# 🛒 FreshCart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FreshCart is a modern, responsive e-commerce web application built using React.js. It provides a clean and intuitive user interface for browsing products, managing the cart, and user authentication — ideal for showcasing frontend development skills.
 
-Currently, two official plugins are available:
+🚀 **Live Demo**  
+Check out the live version here: [fresh-cart-snowy-nine.vercel.app](https://fresh-cart-snowy-nine.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+
+## ✨ Features
+
+- 🛍️ Product Listing & Details View
+- ➕ Add to Cart & Cart Management
+- 🔐 User Registration & Login
+- ✅ Input Validation
+- ⚙️ Clean, Modern UI
+- 📱 Fully Responsive Design
+- 🌐 Built with React.js and modern web technologies
+
+---
+
+## 🛠️ Tech Stack
+
+- **React.js**
+- **React Router**
+- **CSS Modules / SCSS**
+- **Vite** (for fast development)
+
+---
+
+## 📦 Getting Started
+
+To run the project locally:
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/fresh-cart.git
+cd fresh-cart
+
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+
+
+📌 Future Enhancements
+🧾 Order summary & checkout flow
+
+🗂️ Category-based filtering
+
+🌙 Dark mode toggle
+
+💳 Payment gateway integration
+
+🧑‍💻 Author
+Made with ❤️ by Abdullah hisham
+
+📄 License
+This project is open source and available under the MIT License.
