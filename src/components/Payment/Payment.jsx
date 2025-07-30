@@ -58,7 +58,7 @@ const Payment = () => {
             onBlur={formik.handleBlur}
             value={formik.values.email}
             className="w-full px-3 py-2 border rounded-lg"
-            readOnly
+            placeholder=""
           />
           {formik.touched.email && formik.errors.email ? (
             <div className="text-red-500 text-sm">{formik.errors.email}</div>
