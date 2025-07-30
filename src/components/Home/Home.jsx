@@ -13,18 +13,16 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const { addToCart } = useContext(CartContext);
-  const { addToWishList } = useContext(WishListContext);
+  const { addToWishList, wishList } = useContext(WishListContext);
 
   async function getAllFood() {
     try {
       const { data } = await axios.get(
         "https://ecommerce.routemisr.com/api/v1/products"
       );
-      console.log("Fetched products:", data); // Debugging log
       setProducts(data.data);
       setLoading(false);
     } catch (error) {
-      console.log("Error fetching products:", error);
       setLoading(false);
     }
   }
@@ -53,6 +51,11 @@ const Home = () => {
     toast.success("Added successfully to wishlist");
   };
 
+  // Check if product is in wishlist
+  const isInWishList = (productId) => {
+    return wishList && wishList.some((item) => item._id === productId);
+  };
+
   return (
     <>
       <div className="container mx-auto py-7 mt-12">
@@ -74,28 +77,32 @@ const Home = () => {
         ) : filteredProducts.length > 0 ? (
           <div className="mt-24 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-20">
             {filteredProducts.map((product, index) => (
-              <div key={index} className="product px-4 py-2 rounded relative group">
+              <div key={index} className="product px-4 py-2 rounded relative group shadow hover:shadow-lg transition">
                 <Link to={`/details/${product._id}`}>
-                  <img src={product.imageCover} className="w-full" alt="" />
+                  <img src={product.imageCover} className="w-full rounded" alt="" />
                   <h3 className="text-[#4fa74f] mb-2">{product.category.name}</h3>
-                  <h3 className="h6 fw-bold">{product.title}</h3>
-                  <div className="d-flex justify-content-between align-items-center mt-2">
-                    <span>{product.price}</span>
-                    <div className="d-flex align-items-center">
-                      <i className="fa fa-star gold text-amber-300"></i>
+                  <h3 className="font-bold text-lg mb-2">{product.title}</h3>
+                  <div className="flex justify-between items-center mt-2">
+                    <span className="font-semibold">${product.price}</span>
+                    <div className="flex items-center">
+                      <i className="fa fa-star text-amber-300 mr-1"></i>
                       <span>{product.ratingsAverage}</span>
                     </div>
                   </div>
                 </Link>
-                <div className="add-to-cart d-flex justify-content-between align-items-center mt-2">
+                <div className="flex justify-between items-center mt-2">
                   <button
-                    className="add-to-cart-button"
+                    className="bg-[#4fa74f] text-white px-4 py-2 rounded hover:bg-green-700 transition"
                     onClick={() => handleAddToCart(product)}
                   >
                     + Add
                   </button>
                   <i
-                    className="fa-2x fa-solid fa-heart h3 cursor-pointer"
+                    className={`fa-2x fa-solid fa-heart h3 cursor-pointer transition-colors duration-300 ${
+                      isInWishList(product._id)
+                        ? "text-red-500"
+                        : "text-gray-300 hover:text-red-400"
+                    }`}
                     onClick={() => handleAddToWishList(product)}
                   ></i>
                 </div>
