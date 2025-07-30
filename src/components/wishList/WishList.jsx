@@ -3,14 +3,14 @@ import { WishListContext } from '../WishListContext/WishListContext';
 import { Link } from 'react-router-dom';
 
 const WishList = () => {
-  const { wishListItems, removeFromWishList } = useContext(WishListContext);
+  const { wishList, removeFromWishList } = useContext(WishListContext);
 
   return (
     <div className="container mx-auto py-7 mt-36">
       <h2 className="text-4xl font-bold mb-8 text-[#4fa74f]">Wish List</h2>
-      {wishListItems.length > 0 ? (
+      {wishList && wishList.length > 0 ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-20">
-          {wishListItems.map((item, index) => (
+          {wishList.map((item, index) => (
             <div key={index} className="product px-4 py-2 rounded relative group border border-gray-300 hover:shadow-lg hover:shadow-[#4fa74f] transition-shadow duration-300">
               <Link to={`/details/${item._id}`}>
                 <img src={item.imageCover} className="w-full" alt={item.title} />
