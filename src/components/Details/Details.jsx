@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from '../CartContext.jsx/CartContext';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Details = () => {
   const { id } = useParams();
@@ -25,6 +27,15 @@ const Details = () => {
     fetchProduct();
   }, [id]);
 
+  const handleAddToCart = () => {
+    addToCart(product);
+    toast.success("🛒 Item added to cart!");
+  };
+
+  const handleAddToWishlist = () => {
+    toast.info("💖 Item added to wishlist!");
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -46,14 +57,18 @@ const Details = () => {
           <div className="flex items-center justify-between">
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded w-[80%]"
-              onClick={() => addToCart(product)}
+              onClick={handleAddToCart}
             >
               Add to Cart
             </button>
-            <i className="fa-2x fa-solid fa-heart h3"></i>
+            <i
+              className="fa-2x fa-solid fa-heart h3 cursor-pointer text-red-500"
+              onClick={handleAddToWishlist}
+            ></i>
           </div>
         </div>
       </div>
+      <ToastContainer position="bottom-right" autoClose={2000} hideProgressBar />
     </div>
   );
 };
